@@ -18,13 +18,13 @@ let ud = [
   "date_updated": "2018-10-01T00:00:00Z"
 },
 {
-  "_id" : "users/admin@example.com",
+  "_id" : "users/user@example.com",
   "_rev": "_gXP-g2q---",
-  "_key": "admin@example.com",
+  "_key": "user@example.com",
   "user_id": "57370b02-ee3b-4ca9-8f41-7d0cb1fcab11",
   "name": "User Gopher",
   "roles": [
-    "ADMIN"
+    "USER"
   ],
   "password_hash": "JDJhJDEwJHBZL3lRd0VLWjRJN2hHd1ZTa2tBRS5vaU5nZDRPNG0ySURCRUhUaTRRSUpxcjVSY2JRai5t",
   "enabled": false,

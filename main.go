@@ -11,6 +11,8 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/ardanlabs/conf/v3"
+
 	"github.com/gitamped/seed/auth"
 	"github.com/gitamped/seed/keystore"
 	"github.com/gitamped/seed/mid"
@@ -23,10 +25,22 @@ import (
 	"go.uber.org/zap"
 )
 
+var build = "develop"
+
+type config struct {
+	conf.Version
+	Args       conf.Args
+	ArangodbDB database.Config
+}
+
 func main() {
-	arangodbUrl := flag.String("arangodb-url", "http://127.0.0.1:49157", "arangodb url")
-	arangodbUsername := flag.String("arangodb-username", "root", "display colorized output")
-	arangodbPassword := flag.String("arangodb-password", "arangodb", "display colorized output")
+
+	cfg := config{
+		Version: conf.Version{
+			Build: build,
+			Desc:  "copyright information here",
+		},
+	}
 
 	esUrl := flag.String("esUrl", "http://127.0.0.1:9200", "elasticsearch url")
 	flag.Parse()
@@ -50,11 +64,11 @@ func main() {
 	defer cancel()
 
 	dbClient, err := database.Open(database.Config{
-		User:       *arangodbUsername,
-		Password:   *arangodbPassword,
-		Host:       *arangodbUrl,
-		Name:       "kjvonly",
-		DisableTLS: true,
+		User:       cfg.ArangodbDB.User,
+		Password:   cfg.ArangodbDB.Password,
+		Host:       cfg.ArangodbDB.Host,
+		Name:       cfg.ArangodbDB.Name,
+		DisableTLS: cfg.ArangodbDB.DisableTLS,
 	})
 
 	if err != nil {
