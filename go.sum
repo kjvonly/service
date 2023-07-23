@@ -6,6 +6,8 @@ github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/fatih/structtag v1.2.0 h1:/OdNE99OxoI/PqaW/SuSK9uxxT3f/tcSZgon/ssNSx4=
 github.com/fatih/structtag v1.2.0/go.mod h1:mBJUNpUnHmRKrKlQQlmCrh5PuhftFbNv8Ys4/aAZl94=
+github.com/gitamped/bud v0.0.0-20230610202038-ab1da25e50e5 h1:xmrQk/goUqVbMBTpk2xKfAQR1XbMt191Qjs9SMf7hY4=
+github.com/gitamped/bud v0.0.0-20230610202038-ab1da25e50e5/go.mod h1:9b/vUsSqAgTq//bh1vd4PNZ787m3BAMyBhdiajLt0v8=
 github.com/gitamped/fertilize v0.0.0-20230302040024-434526fec2e1 h1:Bcc4+NI7qXbDYqkiNl+whVu3SYdjkh/skQKcr3TI8K8=
 github.com/gitamped/fertilize v0.0.0-20230302040024-434526fec2e1/go.mod h1:JbO0QGq0V8w2Y+74gZ7n1T8695j97qftAcwrwFe4dBU=
 github.com/gitamped/seed v0.0.0-20230226194332-3046d49aaf19 h1:ZstH+XrgLC+cOPcK2u99z7rAIUNv8NxFLenS+HmaihA=

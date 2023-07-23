@@ -1,4 +1,4 @@
-module github.com/gitamped/bud
+module github.com/kjvonly/service
 
 go 1.20
 
@@ -16,6 +16,7 @@ require (
 )
 
 require (
+	github.com/gitamped/bud v0.0.0-20230610202038-ab1da25e50e5
 	github.com/gitamped/fertilize v0.0.0-20230302040024-434526fec2e1
 	github.com/gitamped/stem v0.0.0-20230226202309-97fe007ceb1f
 	github.com/go-playground/locales v0.14.1 // indirect

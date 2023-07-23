@@ -59,7 +59,7 @@ func main() {
 
 	sugar.Info("Database ready")
 
-	db, _ := dbClient.Database(ctx, "testcreateuser")
+	db, _ := dbClient.Database(ctx, "kjvonly")
 	userStorer := nosql.NewStore(sugar, db)
 
 	// Register UserServicer

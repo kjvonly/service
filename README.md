@@ -1,7 +1,13 @@
-# bud
-Example web service in Go using the seed, stem, and fertilize projects
+# SERVICE
+
+Service code for kjvonly.
 
 # Example output
+
+
+```
+$(echo password | htpasswd -BinC 10 admin | cut -d: -f2)
+```
 
 ```
 $ curl -X POST  --data '{"username": "user@example.com", "password": "gophers"}' http://localhost:8080/v1/UserService.Authenticate
