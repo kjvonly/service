@@ -43,7 +43,7 @@ func main() {
 		User:       "root",
 		Password:   "arangodb",
 		Host:       fmt.Sprintf("http://%s", "127.0.0.1:49157"),
-		Name:       "arangodb",
+		Name:       "kjvonly",
 		DisableTLS: true,
 	})
 

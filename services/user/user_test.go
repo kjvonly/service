@@ -84,7 +84,7 @@ func Test_User(t *testing.T) {
 			t.Logf("\t%s\tTest %d:\tShould be able to create user.", dbtest.Success, testID)
 
 			// query user by id
-			qu := user.QueryUserByIDRequest{cuUsr.User.ID.String()}
+			qu := user.QueryUserByIDRequest{ID: cuUsr.User.ID.String()}
 			quUsr := core.QueryUserByID(qu, server.GenericRequest{
 				Ctx:    ctx,
 				Claims: auth.Claims{},
@@ -116,7 +116,7 @@ func Test_User(t *testing.T) {
 				Email: &cuUsr.User.Email,
 				Name:  &updateName,
 			}
-			uu := user.UpdateUserRequest{uusr}
+			uu := user.UpdateUserRequest{UpdateUser: uusr}
 			uuUsr := core.UpdateUser(uu, server.GenericRequest{
 				Ctx:    ctx,
 				Claims: auth.Claims{Roles: []string{auth.RoleAdmin}},
@@ -163,7 +163,7 @@ func Test_User(t *testing.T) {
 			t.Logf("\t%s\tTest %d:\tShould be able to forbid failed authenticated user.", dbtest.Success, testID)
 
 			// delete user
-			du := user.DeleteUserRequest{cuUsr.User}
+			du := user.DeleteUserRequest{User: cuUsr.User}
 			duUsr := core.DeleteUser(du, server.GenericRequest{
 				Ctx:    ctx,
 				Claims: auth.Claims{},
