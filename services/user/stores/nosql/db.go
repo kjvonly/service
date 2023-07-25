@@ -7,7 +7,7 @@ import (
 	"net/mail"
 
 	"github.com/arangodb/go-driver"
-	"github.com/gitamped/bud/services/user"
+	"github.com/kjvonly/service/services/user"
 	"go.uber.org/zap"
 	"golang.org/x/crypto/bcrypt"
 )

@@ -10,13 +10,13 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/gitamped/bud/services/user"
-	"github.com/gitamped/bud/services/user/stores/nosql"
 	"github.com/gitamped/seed/auth"
 	"github.com/gitamped/seed/keystore"
 	"github.com/gitamped/seed/mid"
 	"github.com/gitamped/seed/server"
 	"github.com/gitamped/stem/database"
+	"github.com/kjvonly/service/services/user"
+	"github.com/kjvonly/service/services/user/stores/nosql"
 	"go.uber.org/zap"
 )
 

@@ -5,8 +5,8 @@ import (
 	"net/mail"
 	"time"
 
-	"github.com/gitamped/bud/services/user"
 	"github.com/google/uuid"
+	"github.com/kjvonly/service/services/user"
 )
 
 // dbUser represent the structure we need for moving data

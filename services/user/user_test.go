@@ -9,13 +9,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/gitamped/bud/services/user"
-	"github.com/gitamped/bud/services/user/stores/nosql"
 	"github.com/gitamped/seed/auth"
 	"github.com/gitamped/seed/server"
 	"github.com/gitamped/seed/values"
 	"github.com/gitamped/stem/data/nosql/dbtest"
 	"github.com/gitamped/stem/docker"
+	"github.com/kjvonly/service/services/user"
+	"github.com/kjvonly/service/services/user/stores/nosql"
 )
 
 var c *docker.Container

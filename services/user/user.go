@@ -82,7 +82,7 @@ func (u UserServicer) Authenticate(req AuthenticateRequest, gr server.GenericReq
 	claims := auth.Claims{
 		RegisteredClaims: jwt.RegisteredClaims{
 			Subject:   usr.ID.String(),
-			Issuer:    "bud project",
+			Issuer:    "kjvonly",
 			ExpiresAt: jwt.NewNumericDate(time.Now().UTC().Add(time.Hour)),
 			IssuedAt:  jwt.NewNumericDate(time.Now().UTC()),
 		},
@@ -165,7 +165,7 @@ func (u UserServicer) UpdateUser(req UpdateUserRequest, gr server.GenericRequest
 
 // Register implements UserRpcService
 func (us UserServicer) Register(s *server.Server) {
-	s.Register("UserService", "CreateUser", server.RPCEndpoint{Roles: []string{auth.RoleAdmin}, Handler: us.CreateUserHandler})
+	s.Register("UserService", "CreateUser", server.RPCEndpoint{Roles: []string{}, Handler: us.CreateUserHandler})
 	s.Register("UserService", "DeleteUser", server.RPCEndpoint{Roles: []string{auth.RoleAdmin}, Handler: us.DeleteUserHandler})
 	s.Register("UserService", "QueryUserByID", server.RPCEndpoint{Roles: []string{auth.RoleAdmin}, Handler: us.QueryUserByIDHandler})
 	s.Register("UserService", "QueryUserByEmail", server.RPCEndpoint{Roles: []string{auth.RoleAdmin}, Handler: us.QueryUserByEmailHandler})
