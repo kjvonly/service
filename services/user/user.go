@@ -165,7 +165,7 @@ func (u UserServicer) UpdateUser(req UpdateUserRequest, gr server.GenericRequest
 
 // Register implements UserRpcService
 func (us UserServicer) Register(s *server.Server) {
-	s.Register("UserService", "CreateUser", server.RPCEndpoint{Roles: []string{}, Handler: us.CreateUserHandler})
+	s.Register("UserService", "CreateUser", server.RPCEndpoint{Roles: []string{auth.RoleAdmin}, Handler: us.CreateUserHandler})
 	s.Register("UserService", "DeleteUser", server.RPCEndpoint{Roles: []string{auth.RoleAdmin}, Handler: us.DeleteUserHandler})
 	s.Register("UserService", "QueryUserByID", server.RPCEndpoint{Roles: []string{auth.RoleAdmin}, Handler: us.QueryUserByIDHandler})
 	s.Register("UserService", "QueryUserByEmail", server.RPCEndpoint{Roles: []string{auth.RoleAdmin}, Handler: us.QueryUserByEmailHandler})
