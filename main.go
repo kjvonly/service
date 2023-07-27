@@ -15,8 +15,10 @@ import (
 	"github.com/gitamped/seed/mid"
 	"github.com/gitamped/seed/server"
 	"github.com/gitamped/stem/database"
+	"github.com/kjvonly/service/services/bible"
+	esStore "github.com/kjvonly/service/services/bible/stores/elasticsearch"
 	"github.com/kjvonly/service/services/user"
-	"github.com/kjvonly/service/services/user/stores/nosql"
+	userStore "github.com/kjvonly/service/services/user/stores/nosql"
 	"go.uber.org/zap"
 )
 
@@ -60,11 +62,16 @@ func main() {
 	sugar.Info("Database ready")
 
 	db, _ := dbClient.Database(ctx, "kjvonly")
-	userStorer := nosql.NewStore(sugar, db)
+	userStorer := userStore.NewStore(sugar, db)
 
 	// Register UserServicer
 	gs := user.NewUserServicer(sugar, userStorer, *a)
 	gs.Register(s)
+
+	// Register BibleSearchService
+	ess := esStore.NewStore(sugar, "http://localhost:9200")
+	bs := bible.NewBibleSearchServicer(sugar, ess, *a)
+	bs.Register(s)
 
 	// Listen
 	fmt.Println(`Listening on port 8080`)
