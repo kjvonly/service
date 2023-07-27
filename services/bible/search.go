@@ -26,7 +26,7 @@ type BibleSearchServicer struct {
 	auth   auth.Auth
 }
 
-func (b BibleSearchServicer) Search(BibleSearchRequest) BibleSearchResponse {
+func (b BibleSearchServicer) Search(req BibleSearchRequest, gr server.GenericRequest) BibleSearchResponse {
 	return BibleSearchResponse{}
 }
 

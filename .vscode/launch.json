@@ -16,7 +16,7 @@
                 "--directory",
                 "../../../services/bible",
                 "--excluded",
-                "BibleSearchRpcService"
+                "BibleSearchRpcServicer"
             ]
         },
         {
