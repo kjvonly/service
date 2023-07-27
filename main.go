@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -23,6 +24,13 @@ import (
 )
 
 func main() {
+	arangodbUrl := flag.String("arangodb-url", "http://127.0.0.1:49157", "arangodb url")
+	arangodbUsername := flag.String("arangodb-username", "root", "display colorized output")
+	arangodbPassword := flag.String("arangodb-password", "arangodb", "display colorized output")
+
+	esUrl := flag.String("esUrl", "http://127.0.0.1:9200", "elasticsearch url")
+	flag.Parse()
+
 	// New RPCServer
 	s := server.NewServer(mid.CommonMiddleware)
 
@@ -42,9 +50,9 @@ func main() {
 	defer cancel()
 
 	dbClient, err := database.Open(database.Config{
-		User:       "root",
-		Password:   "arangodb",
-		Host:       fmt.Sprintf("http://%s", "127.0.0.1:49157"),
+		User:       *arangodbUsername,
+		Password:   *arangodbPassword,
+		Host:       *arangodbUrl,
 		Name:       "kjvonly",
 		DisableTLS: true,
 	})
@@ -69,7 +77,7 @@ func main() {
 	gs.Register(s)
 
 	// Register BibleSearchService
-	ess := esStore.NewStore(sugar, "http://localhost:9200")
+	ess := esStore.NewStore(sugar, *esUrl)
 	bs := bible.NewBibleSearchServicer(sugar, ess, *a)
 	bs.Register(s)
 
