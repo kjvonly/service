@@ -15,7 +15,6 @@ import (
 )
 
 func main() {
-
 	pattern := flag.String("pattern", "github.com/kjvonly/service/services/users", "package file path starting with github.com/kjvonly/")
 	directory := flag.String("directory", "../../../services/user", "package directory")
 	excluded := flag.String("excluded", "UserRpcService", "excluded interfaces")
@@ -28,13 +27,13 @@ func main() {
 	p := parser.New(patterns...)
 	p.ExcludeInterfaces = []string{*excluded}
 	p.Verbose = false
-	log.Println(os.Getwd())
 	def, err := p.Parse()
 	if err != nil {
 		panic(fmt.Sprintf("err parsing: %s", err))
 	}
-	b, err := json.Marshal(def)
-	t, _ := ioutil.ReadFile("./handlers.tmpl")
+
+	b, _ := json.Marshal(def)
+	t, _ := ioutil.ReadFile("../../tooling/services/templates/handlers.tmpl")
 	var data map[string]parser.Definition
 	json.Unmarshal(b, &data)
 
