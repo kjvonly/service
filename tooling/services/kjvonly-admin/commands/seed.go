@@ -11,7 +11,7 @@ import (
 	"github.com/gitamped/stem/database"
 )
 
-// Seed creates the schema in the database.
+// Seed populates the schema in the database.
 func Seed(ctx context.Context, cfg database.Config, seedPath string) error {
 
 	b, _ := os.ReadFile(seedPath)
