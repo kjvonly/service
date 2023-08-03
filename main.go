@@ -81,7 +81,7 @@ func main() {
 		sugar.Fatalf("Opening database connection: %v", err)
 	}
 
-	sugar.Info("Waiting for database to be ready ...")
+	sugar.Info("Waiting for database %s to be ready ...", cfg.ArangoDB.Host)
 
 	if err := database.StatusCheck(ctx, dbClient); err != nil {
 		sugar.Fatalf("status check database: %v", err)
