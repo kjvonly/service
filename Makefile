@@ -18,7 +18,7 @@ es-search-local:
 migrate:
 	go run tooling/kjvonly-admin/main.go migrate
 
-seed: migrate
+seed:
 	go run tooling/tooling//main.go seed
 
 
