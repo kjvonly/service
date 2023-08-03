@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -29,8 +28,11 @@ var build = "develop"
 
 type config struct {
 	conf.Version
-	Args       conf.Args
-	ArangodbDB database.Config
+	Args     conf.Args
+	ArangoDB database.Config
+	ES       struct {
+		URL string `conf:"default:http://127.0.0.1:9200"`
+	}
 }
 
 func main() {
@@ -48,9 +50,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to parse config")
 	}
-
-	esUrl := flag.String("esUrl", "http://127.0.0.1:9200", "elasticsearch url")
-	flag.Parse()
 
 	// New RPCServer
 	s := server.NewServer(mid.CommonMiddleware)
@@ -71,11 +70,11 @@ func main() {
 	defer cancel()
 
 	dbClient, err := database.Open(database.Config{
-		User:       cfg.ArangodbDB.User,
-		Password:   cfg.ArangodbDB.Password,
-		Host:       cfg.ArangodbDB.Host,
-		Name:       cfg.ArangodbDB.Name,
-		DisableTLS: cfg.ArangodbDB.DisableTLS,
+		User:       cfg.ArangoDB.User,
+		Password:   cfg.ArangoDB.Password,
+		Host:       cfg.ArangoDB.Host,
+		Name:       cfg.ArangoDB.Name,
+		DisableTLS: cfg.ArangoDB.DisableTLS,
 	})
 
 	if err != nil {
@@ -98,7 +97,7 @@ func main() {
 	gs.Register(s)
 
 	// Register BibleSearchService
-	ess := esStore.NewStore(sugar, *esUrl)
+	ess := esStore.NewStore(sugar, cfg.ES.URL)
 	bs := bible.NewBibleSearchServicer(sugar, ess, *a)
 	bs.Register(s)
 
