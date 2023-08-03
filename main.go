@@ -42,6 +42,13 @@ func main() {
 		},
 	}
 
+	const prefix = "kjvonly"
+	_, err := conf.Parse(prefix, &cfg)
+
+	if err != nil {
+		log.Fatalf("failed to parse config")
+	}
+
 	esUrl := flag.String("esUrl", "http://127.0.0.1:9200", "elasticsearch url")
 	flag.Parse()
 
