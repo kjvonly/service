@@ -11,15 +11,16 @@ SERVICE_IMAGE   := $(BASE_IMAGE_NAME)/$(SERVICE_NAME):$(VERSION)
 es-search-local:
 	curl -X POST  --data '{"query": "SELECT count(*) as matches from kjvonly where text like '\''%money%'\''"}' http://localhost:8080/v1/BibleSearchService.Search
 
-
+token-local:
+	curl -X POST  --data '{"username": "user@example.com", "password": "gophers"}' http://localhost:8080/v1/UserService.Authenticate
 # ==============================================================================
 # Administration
 
 migrate:
-	go run tooling/kjvonly-admin/main.go migrate
+	go run tooling/services/kjvonly-admin/main.go migrate
 
 seed:
-	go run tooling/tooling//main.go seed
+	go run tooling/services/kjvonly-admin/main.go seed
 
 
 .PHONY: service

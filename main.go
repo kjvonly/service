@@ -104,7 +104,6 @@ func main() {
 
 	// Listen
 	fmt.Println(`Listening on port 8080`)
-	fmt.Println(`test cmd: curl -X POST  --data '{"username": "user@example.com", "password": "gophers"}' http://localhost:8080/v1/UserService.Authenticate`)
 	http.Handle("/v1/", s)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

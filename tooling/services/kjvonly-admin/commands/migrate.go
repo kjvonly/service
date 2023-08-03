@@ -16,9 +16,9 @@ import (
 var ErrHelp = errors.New("provided help")
 
 // Migrate creates the schema in the database.
-func Migrate(ctx context.Context, cfg database.Config) error {
+func Migrate(ctx context.Context, cfg database.Config, migratePath string) error {
 
-	b, _ := os.ReadFile("../../../testdata/collections.txt")
+	b, _ := os.ReadFile(migratePath)
 	cols := strings.Split(string(b), "\n")
 
 	dbClient, err := database.Open(cfg)

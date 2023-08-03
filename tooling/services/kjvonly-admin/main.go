@@ -20,6 +20,12 @@ type config struct {
 	conf.Version
 	Args       conf.Args
 	ArangodbDB database.Config
+	Seed       struct {
+		Path string `conf:"default:testdata/seed.txt"`
+	}
+	Migrate struct {
+		Path string `conf:"default:testdata/collections.txt"`
+	}
 }
 
 func main() {
@@ -70,12 +76,12 @@ func processCommands(args conf.Args, log *zap.SugaredLogger, cfg config) error {
 
 	switch args.Num(0) {
 	case "migrate":
-		if err := commands.Migrate(ctx, cfg.ArangodbDB); err != nil {
+		if err := commands.Migrate(ctx, cfg.ArangodbDB, cfg.Migrate.Path); err != nil {
 			return fmt.Errorf("migrating database: %w", err)
 		}
 
 	case "seed":
-		if err := commands.Seed(ctx, cfg.ArangodbDB); err != nil {
+		if err := commands.Seed(ctx, cfg.ArangodbDB, cfg.Seed.Path); err != nil {
 			return fmt.Errorf("seeding database: %w", err)
 		}
 

@@ -12,9 +12,9 @@ import (
 )
 
 // Seed creates the schema in the database.
-func Seed(ctx context.Context, cfg database.Config) error {
+func Seed(ctx context.Context, cfg database.Config, seedPath string) error {
 
-	b, _ := os.ReadFile("../../../testdata/seed.txt")
+	b, _ := os.ReadFile(seedPath)
 	seed := string(b)
 
 	dbClient, err := database.Open(cfg)
